@@ -1,7 +1,7 @@
 import "@buildo/bento-design-system/index.css";
 import "@buildo/bento-design-system/defaultTheme.css";
 import { defaultMessages } from "@buildo/bento-design-system/defaultMessages/en";
-import React from "react";
+
 import {
   BentoProvider,
   Headline,
@@ -9,36 +9,35 @@ import {
   ContentWithSidebar,
   Body,
   Tiles,
-  Switch,
-  Inline,
 } from "@buildo/bento-design-system";
 import RestaurantPreview from "./components/RestaurantPreview";
 import rest_detail from "./mock-data/rest_detail.json";
+import './i18n';
+import { useTranslation } from "react-i18next";
+
+
 
 function App() {
+  const { t } = useTranslation();
   const name = rest_detail.name;
   const image_url = rest_detail.image_url;
   const rating = rest_detail.rating;
   const address = rest_detail.location.address1;
-  const [isEng, setEng] = React.useState(false);
+
+  const mockCards = [...Array(16)].map(() => {
+    return <RestaurantPreview
+      name={name}
+      image_url={image_url}
+      rating={rating}
+      address={address}
+    />
+  })
 
   return (
     <BentoProvider defaultMessages={defaultMessages}>
       <Headline size="large" align="center">
-        YelpLike
+        {t("title")}
       </Headline>
-      <Inline space={8}>
-        <Switch
-          switchPosition="trailing"
-          label="ITA"
-          name="lang-toggle"
-          value={isEng}
-          onChange={setEng}
-        />
-        <Body size={"large"} color={"primary"}>
-          ENG
-        </Body>
-      </Inline>
 
       <Box>
         <ContentWithSidebar
@@ -63,78 +62,7 @@ function App() {
           >
             <Body size="large">
               <Tiles space={16} columns={3} alignY={"bottom"}>
-                <RestaurantPreview
-                  name={name}
-                  image_url={image_url}
-                  rating={rating}
-                  address={address}
-                />
-                <RestaurantPreview
-                  name={name}
-                  image_url={image_url}
-                  rating={rating}
-                  address={address}
-                />
-                <RestaurantPreview
-                  name={name}
-                  image_url={image_url}
-                  rating={rating}
-                  address={address}
-                />
-                <RestaurantPreview
-                  name={name}
-                  image_url={image_url}
-                  rating={rating}
-                  address={address}
-                />
-                <RestaurantPreview
-                  name={name}
-                  image_url={image_url}
-                  rating={rating}
-                  address={address}
-                />
-                <RestaurantPreview
-                  name={name}
-                  image_url={image_url}
-                  rating={rating}
-                  address={address}
-                />
-                <RestaurantPreview
-                  name={name}
-                  image_url={image_url}
-                  rating={rating}
-                  address={address}
-                />
-                <RestaurantPreview
-                  name={name}
-                  image_url={image_url}
-                  rating={rating}
-                  address={address}
-                />
-                <RestaurantPreview
-                  name={name}
-                  image_url={image_url}
-                  rating={rating}
-                  address={address}
-                />
-                <RestaurantPreview
-                  name={name}
-                  image_url={image_url}
-                  rating={rating}
-                  address={address}
-                />
-                <RestaurantPreview
-                  name={name}
-                  image_url={image_url}
-                  rating={rating}
-                  address={address}
-                />
-                <RestaurantPreview
-                  name={name}
-                  image_url={image_url}
-                  rating={rating}
-                  address={address}
-                />
+                {mockCards}
               </Tiles>
             </Body>
           </Box>

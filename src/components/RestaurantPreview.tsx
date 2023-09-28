@@ -1,6 +1,7 @@
 import "@buildo/bento-design-system/index.css";
 import "@buildo/bento-design-system/defaultTheme.css";
 import { Card, Stack, Title, Body, Label } from "@buildo/bento-design-system";
+import { useTranslation } from "react-i18next";
 
 export interface PreviewProps {
   name: string;
@@ -10,6 +11,7 @@ export interface PreviewProps {
 }
 
 function RestaurantPreview({ name, image_url, rating, address }: PreviewProps) {
+  const { t } = useTranslation();
   return (
     <Card elevation="small" borderRadius={8} paddingX={24} paddingY={40}>
       <Stack space={8}>
@@ -18,7 +20,7 @@ function RestaurantPreview({ name, image_url, rating, address }: PreviewProps) {
         <Body size="medium">
           {address}
           <Label size="small" color="default">
-            {`Rating: ${rating} ★`}
+            {`${t("Card.Rating")}: ${rating} ★`}
           </Label>
         </Body>
       </Stack>
