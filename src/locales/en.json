@@ -1,6 +1,6 @@
 {
     "title": "YelpLike",
     "Card": {
-      "Rating": "Rating"
+      "Rating": "Rating: {{rating}} ★"
     }
   }

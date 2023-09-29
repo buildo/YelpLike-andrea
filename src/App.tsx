@@ -23,26 +23,25 @@ function App() {
         <Headline size="large" align="center">
           {t("title")}
         </Headline>
-        <Box>
-          <ContentWithSidebar
-            sidebarPosition="left"
-            sidebarWidth="1/5"
-            sidebarBackground="backgroundOverlay"
+
+        <ContentWithSidebar
+          sidebarPosition="left"
+          sidebarWidth="1/5"
+          sidebarBackground="backgroundOverlay"
+        >
+          <Box
+            height="full"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
           >
-            <Box
-              height="full"
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-            >
-              <Body size="large">filters</Body>
-            </Box>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              {/* <Route path="/" element={<Restaurant />} /> */}
-            </Routes>
-          </ContentWithSidebar>
-        </Box>
+            <Body size="large">filters</Body>
+          </Box>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            {/* <Route path="/" element={<Restaurant />} /> */}
+          </Routes>
+        </ContentWithSidebar>
       </BrowserRouter>
     </BentoProvider>
   );
