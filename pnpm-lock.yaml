@@ -8,12 +8,24 @@ dependencies:
   '@buildo/bento-design-system':
     specifier: ^0.20.4
     version: 0.20.4(@types/react@18.2.23)(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
+  i18next:
+    specifier: ^23.5.1
+    version: 23.5.1
+  prettier:
+    specifier: ^3.0.3
+    version: 3.0.3
   react:
     specifier: ^18.2.0
     version: 18.2.0
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
+  react-i18next:
+    specifier: ^13.2.2
+    version: 13.2.2(i18next@23.5.1)(react-dom@18.2.0)(react@18.2.0)
+  react-router-dom:
+    specifier: '6'
+    version: 6.16.0(react-dom@18.2.0)(react@18.2.0)
 
 devDependencies:
   '@types/react':
@@ -1697,6 +1709,11 @@ packages:
       react: 18.2.0
     dev: false
 
+  /@remix-run/router@1.9.0:
+    resolution: {integrity: sha512-bV63itrKBC0zdT27qYm6SDZHlkXwFL1xMBuhkn+X7l0+IIhNaH5wuuvZKp6eKhCD4KFhujhfhCT1YxXW6esUIA==}
+    engines: {node: '>=14.0.0'}
+    dev: false
+
   /@swc/helpers@0.5.2:
     resolution: {integrity: sha512-E4KcWTpoLHqwPHLxidpOqQbcrZVgi0rsmmZXUle1jXmJfuIf/UWpczUJ7MZZ5tlxytgJXyp0w4PGkkeLiuIdZw==}
     dependencies:
@@ -2741,6 +2758,18 @@ packages:
       react-is: 16.13.1
     dev: false
 
+  /html-parse-stringify@3.0.1:
+    resolution: {integrity: sha512-KknJ50kTInJ7qIScF3jeaFRpMpE8/lfiTdzf/twXyPBLAGrLRTmkz3AdTnKeh40X8k9L2fdYwEp/42WGXIRGcg==}
+    dependencies:
+      void-elements: 3.1.0
+    dev: false
+
+  /i18next@23.5.1:
+    resolution: {integrity: sha512-JelYzcaCoFDaa+Ysbfz2JsGAKkrHiMG6S61+HLBUEIPaF40WMwW9hCPymlQGrP+wWawKxKPuSuD71WZscCsWHg==}
+    dependencies:
+      '@babel/runtime': 7.23.1
+    dev: false
+
   /ignore@5.2.4:
     resolution: {integrity: sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==}
     engines: {node: '>= 4'}
@@ -3104,6 +3133,12 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
+  /prettier@3.0.3:
+    resolution: {integrity: sha512-L/4pUDMxcNa8R/EthV08Zt42WBO4h1rarVtK0K+QJG0X187OLo7l699jWw0GKuwzkPQ//jMFA/8Xm6Fh3J/DAg==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dev: false
+
   /prop-types@15.8.1:
     resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
     dependencies:
@@ -3151,6 +3186,26 @@ packages:
       react: 18.2.0
     dev: false
 
+  /react-i18next@13.2.2(i18next@23.5.1)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-+nFUkbRByFwnrfDcYqvzBuaeZb+nACHx+fAWN/pZMddWOCJH5hoc21+Sa/N/Lqi6ne6/9wC/qRGOoQhJa6IkEQ==}
+    peerDependencies:
+      i18next: '>= 23.2.3'
+      react: '>= 16.8.0'
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.23.1
+      html-parse-stringify: 3.0.1
+      i18next: 23.5.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
   /react-input-mask@2.0.4(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-1hwzMr/aO9tXfiroiVCx5EtKohKwLk/NT8QlJXHQ4N+yJJFyUuMT+zfTpLBwX/lK3PkuMlievIffncpMZ3HGRQ==}
     peerDependencies:
@@ -3189,6 +3244,29 @@ packages:
       lodash: 4.17.21
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /react-router-dom@6.16.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-aTfBLv3mk/gaKLxgRDUPbPw+s4Y/O+ma3rEN1u8EgEpLpPe6gNjIsWt9rxushMHHMb7mSwxRGdGlGdvmFsyPIg==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: '>=16.8'
+      react-dom: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.9.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-router: 6.16.0(react@18.2.0)
+    dev: false
+
+  /react-router@6.16.0(react@18.2.0):
+    resolution: {integrity: sha512-VT4Mmc4jj5YyjpOi5jOf0I+TYzGpvzERy4ckNSvSh2RArv8LLoCxlsZ2D+tc7zgjxcY34oTz2hZaeX5RVprKqA==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.9.0
+      react: 18.2.0
     dev: false
 
   /react-select@5.7.4(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0):
@@ -3633,7 +3711,11 @@ packages:
     optionalDependencies:
       fsevents: 2.3.3
     dev: true
-
+  /void-elements@3.1.0:
+    resolution: {integrity: sha512-Dhxzh5HZuiHQhbvTW9AMetFfBHDMYpo23Uo9btPXgdYP+3T5S+p+jgNy7spra+veYhBP2dCSgxR/i2Y02h5/6w==}
+    engines: {node: '>=0.10.0'}
+    dev: false
+    
   /vscode-jsonrpc@6.0.0:
     resolution: {integrity: sha512-wnJA4BnEjOSyFMvjZdpiOwhSq9uDoK8e/kpRJDTaMYzwlkrhG1fwDIZI94CLsLzlCK5cIbMMtFlJlfR57Lavmg==}
     engines: {node: '>=8.0.0 || >=10.0.0'}
