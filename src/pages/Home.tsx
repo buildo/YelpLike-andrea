@@ -1,4 +1,10 @@
-import { Box, Tiles } from "@buildo/bento-design-system";
+import {
+  Box,
+  Tiles,
+  Inset,
+  ContentWithSidebar,
+  Body,
+} from "@buildo/bento-design-system";
 import RestaurantPreview from "../components/RestaurantPreview";
 import rest_detail from "../mock-data/rest_detail.json";
 
@@ -20,17 +26,26 @@ function Home() {
     );
   });
   return (
-    <Box
-      height="full"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      padding={16}
+    <ContentWithSidebar
+      sidebarPosition="left"
+      sidebarWidth="1/5"
+      sidebarBackground="backgroundOverlay"
     >
-      <Tiles space={16} columns={3} alignY={"bottom"}>
-        {mockCards}
-      </Tiles>
-    </Box>
+      <Box
+        height="full"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Body size="large">filters</Body>
+      </Box>
+
+      <Inset space={16}>
+        <Tiles space={16} columns={3} alignY={"bottom"}>
+          {mockCards}
+        </Tiles>
+      </Inset>
+    </ContentWithSidebar>
   );
 }
 
