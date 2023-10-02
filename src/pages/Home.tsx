@@ -8,8 +8,7 @@ import {
   Inset,
 } from "@buildo/bento-design-system";
 import RestaurantPreview from "../components/RestaurantPreview";
-
-import useGetRestaurantList from "../hooks";
+import rest_detail from "../mock-data/rest_detail.json";
 
 function Home() {
   const { isLoading, isError, data } = useGetRestaurantList(10);
@@ -41,10 +40,13 @@ function Home() {
       <Box
         height="full"
         display="flex"
-        justifyContent="center"
-        alignItems="center"
+        justifyContent="flexStart"
+        alignItems="flexStart"
+        padding={24}
       >
-        <Body size="large">filters</Body>
+        <Body size="large">
+          <PriceFilter></PriceFilter>
+        </Body>
       </Box>
       <Inset space={16}>
         <Tiles

@@ -2,5 +2,6 @@
     "title": "YelpLike",
     "Card": {
       "Rating": "Rating: {{rating}} ★"
-    }
+    },
+    "priceRangefilter":"Filter by average price : "
   }
