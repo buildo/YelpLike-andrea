@@ -54,7 +54,7 @@ function Home() {
       range,
     });
 
-  const setLocation = (location: string) =>
+  const setLocationFilter = (location: string) =>
     setFilters({
       ...filters,
       location,
@@ -69,18 +69,13 @@ function Home() {
       sidebarWidth="1/5"
       sidebarBackground="backgroundOverlay"
     >
-      <Box
-        height="full"
-        //
-
-        padding={24}
-      >
+      <Box height="full" padding={24}>
         <Stack space={16} align="left">
           <PriceFilter price={filters.prices} setPrice={setPricesFilter} />
           <Divider />
           <LocationFilter
             location={filters.location}
-            setLocation={setLocation}
+            setLocation={setLocationFilter}
           />
           <Divider />
           <Box width="full">
