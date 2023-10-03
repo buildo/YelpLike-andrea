@@ -6,6 +6,7 @@ import { BentoProvider, Headline, Inset } from "@buildo/bento-design-system";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Home from "./pages/Home";
+// import RestaurantDetail from "./pages/RestaurantDetail";
 
 function App() {
   const { t } = useTranslation();
@@ -19,8 +20,8 @@ function App() {
           </Headline>
         </Inset>
         <Routes>
-          <Route path="/" element={<Home />} />
-          {/* <Route path="/" element={<Restaurant />} /> */}
+          <Route path="/home" element={<Home />} />
+          {/* <Route path="/restaurat-detail" element={<RestaurantDetail />} /> */}
         </Routes>
       </BrowserRouter>
     </BentoProvider>

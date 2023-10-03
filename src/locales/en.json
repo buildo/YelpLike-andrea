@@ -1,7 +1,8 @@
 {
     "title": "YelpLike",
     "Card": {
-      "Rating": "Rating: {{rating}} ★"
+      "Rating": "Rating: {{rating}} ★",
+      "ButtonLabel":"See details"
     },
     "priceRangefilter":"Filter by average price : ",
     "Location":{
