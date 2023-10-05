@@ -1,29 +1,16 @@
 import {
   Box,
-  Tiles,
-  Inset,
   ContentWithSidebar,
   Body,
+  Inline,
+  Tiles,
 } from "@buildo/bento-design-system";
 import RestaurantPreview from "../components/RestaurantPreview";
-import rest_detail from "../mock-data/rest_detail.json";
+import { PreviewList } from "../models";
 
-function Home() {
-  const name = rest_detail.name;
-  const imageUrl = rest_detail.image_url;
-  const rating = rest_detail.rating;
-  const address = rest_detail.location.address1;
-
-  const mockCards = [...Array(16).keys()].map((element) => {
-    return (
-      <RestaurantPreview
-        key={element}
-        name={name}
-        imageUrl={imageUrl}
-        rating={rating}
-        address={address}
-      />
-    );
+function Home({ businesses }: PreviewList) {
+  const cards = businesses.map((element) => {
+    return <RestaurantPreview key={"home-" + element.alias} {...element} />;
   });
   return (
     <ContentWithSidebar
@@ -40,11 +27,11 @@ function Home() {
         <Body size="large">filters</Body>
       </Box>
 
-      <Inset space={16}>
+      <Inline collapseBelow={"desktop"} space={16}>
         <Tiles space={16} columns={3} alignY={"bottom"}>
-          {mockCards}
+          {cards}
         </Tiles>
-      </Inset>
+      </Inline>
     </ContentWithSidebar>
   );
 }
