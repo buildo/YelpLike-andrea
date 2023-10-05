@@ -1,4 +1,4 @@
-import { PreviewList, previewList } from "../models";
+import { PreviewList, previewList } from "./models";
 
 export function fromJsonToProp(jsonApi: JSON): PreviewList {
   const propList = previewList.safeParse(jsonApi);

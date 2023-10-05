@@ -13,7 +13,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Home from "./pages/Home";
 import { useQuery } from "@tanstack/react-query";
-import { fromJsonToProp } from "./pages/utils";
+import { fromJsonToProp } from "./utils";
 import { getRestaurantList } from "./apis/api";
 
 function App() {
