@@ -20,12 +20,7 @@ function RestaurantPreview(props: PreviewProp) {
   return (
     <Card elevation="small" borderRadius={8} paddingX={24} paddingY={40}>
       <Stack space={8}>
-        <Box
-          height="full"
-          display="block"
-          justifyContent="center"
-          alignItems="center"
-        >
+        <Box height="full" justifyContent="center" alignItems="center">
           <img src={imagePrev} width="70%" height="100px" />
         </Box>
 

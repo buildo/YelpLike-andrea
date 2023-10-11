@@ -5,6 +5,6 @@ export function fromJsonToProp(jsonApi: JSON): PreviewList {
   if (propList.success) {
     return propList.data;
   } else {
-    return { businesses: [] } as PreviewList;
+    throw Error("Something went wrong with the APIs response");
   }
 }
