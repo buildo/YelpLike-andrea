@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const apisecret = z
+export const apiSecret = z
   .string()
   .length(128, { message: "Must be exactly 128 characters long" });
 
