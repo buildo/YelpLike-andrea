@@ -19,7 +19,7 @@ function App() {
           </Headline>
         </Inset>
         <Routes>
-          <Route path="/" element={<Home range={10} />} />
+          <Route path="/" element={<Home />} />
           {/* <Route path="/" element={<Restaurant />} /> */}
         </Routes>
       </BrowserRouter>

@@ -8,11 +8,11 @@ import {
   Inset,
 } from "@buildo/bento-design-system";
 import RestaurantPreview from "../components/RestaurantPreview";
-import { FiltersParams } from "../models";
+
 import useFetchQuery from "../hooks";
 
-function Home({ range }: FiltersParams) {
-  const { isLoading, isError, data } = useFetchQuery(range);
+function Home() {
+  const { isLoading, isError, data } = useFetchQuery(10);
 
   if (isLoading) {
     return <AreaLoader message="Loading..."></AreaLoader>;
