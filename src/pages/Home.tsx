@@ -9,10 +9,10 @@ import {
 } from "@buildo/bento-design-system";
 import RestaurantPreview from "../components/RestaurantPreview";
 
-import useFetchQuery from "../hooks";
+import useGetRestaurantList from "../hooks";
 
 function Home() {
-  const { isLoading, isError, data } = useFetchQuery(10);
+  const { isLoading, isError, data } = useGetRestaurantList(10);
 
   if (isLoading) {
     return <AreaLoader message="Loading..."></AreaLoader>;
