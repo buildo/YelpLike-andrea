@@ -1,29 +1,36 @@
 import {
   Box,
-  Tiles,
-  Inset,
   ContentWithSidebar,
   Body,
+  Tiles,
+  AreaLoader,
+  Feedback,
+  Inset,
 } from "@buildo/bento-design-system";
 import RestaurantPreview from "../components/RestaurantPreview";
-import rest_detail from "../mock-data/rest_detail.json";
+
+import useGetRestaurantList from "../hooks";
 
 function Home() {
-  const name = rest_detail.name;
-  const imageUrl = rest_detail.image_url;
-  const rating = rest_detail.rating;
-  const address = rest_detail.location.address1;
+  const { isLoading, isError, data } = useGetRestaurantList(10);
 
-  const mockCards = [...Array(16).keys()].map((element) => {
+  if (isLoading) {
+    return <AreaLoader message="Loading..."></AreaLoader>;
+  }
+
+  if (isError) {
     return (
-      <RestaurantPreview
-        key={element}
-        name={name}
-        imageUrl={imageUrl}
-        rating={rating}
-        address={address}
+      <Feedback
+        size="medium"
+        title="Error!"
+        description="Something went wrong!"
+        status="negative"
       />
     );
+  }
+
+  const cards = data?.businesses.map((element) => {
+    return <RestaurantPreview key={"home-" + element.alias} {...element} />;
   });
   return (
     <ContentWithSidebar
@@ -39,10 +46,13 @@ function Home() {
       >
         <Body size="large">filters</Body>
       </Box>
-
       <Inset space={16}>
-        <Tiles space={16} columns={3} alignY={"bottom"}>
-          {mockCards}
+        <Tiles
+          space={16}
+          columns={{ wide: 3, desktop: 3, tablet: 2, mobile: 1 }}
+          alignY="bottom"
+        >
+          {cards}
         </Tiles>
       </Inset>
     </ContentWithSidebar>
