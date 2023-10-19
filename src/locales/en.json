@@ -3,5 +3,14 @@
     "Card": {
       "Rating": "Rating: {{rating}} ★"
     },
-    "priceRangefilter":"Filter by average price : "
+    "priceRangefilter":"Filter by average price : ",
+    "Location":{
+      "Placeholder":"Type here your location ... ",
+      "Label": "Location"
+    },
+    "RangeDistance":{
+      "Label":"Distance :"
+    },
+    "SearchButton": "Search"
+
   }

@@ -1,16 +1,24 @@
 import {
   Box,
   ContentWithSidebar,
-  Body,
-  Tiles,
-  AreaLoader,
+  Stack,
+  Divider,
+  Button,
   Feedback,
+  AreaLoader,
   Inset,
+  Tiles,
 } from "@buildo/bento-design-system";
 import RestaurantPreview from "../components/RestaurantPreview";
-import rest_detail from "../mock-data/rest_detail.json";
+import PriceFilter from "../components/PriceFilter";
+import LocationFilter from "../components/LocationFilter";
+import RangeDistanceFilter from "../components/RangeDistanceFilter";
+import { useTranslation } from "react-i18next";
+import React from "react";
+import useGetRestaurantList from "../hooks";
 
 function Home() {
+  const { t } = useTranslation();
   const { isLoading, isError, data } = useGetRestaurantList(10);
 
   if (isLoading) {
@@ -28,6 +36,30 @@ function Home() {
     );
   }
 
+  const [filters, setFilters] = React.useState({
+    prices: [false, false, false, false],
+    location: "",
+    range: 0,
+  });
+
+  const setPricesFilter = (prices: boolean[]) =>
+    setFilters({
+      ...filters,
+      prices,
+    });
+
+  const setRangeFilter = (range: number) =>
+    setFilters({
+      ...filters,
+      range,
+    });
+
+  const setLocation = (location: string) =>
+    setFilters({
+      ...filters,
+      location,
+    });
+
   const cards = data?.businesses.map((element) => {
     return <RestaurantPreview key={"home-" + element.alias} {...element} />;
   });
@@ -39,14 +71,32 @@ function Home() {
     >
       <Box
         height="full"
-        display="flex"
-        justifyContent="flexStart"
-        alignItems="flexStart"
+        //
+
         padding={24}
       >
-        <Body size="large">
-          <PriceFilter></PriceFilter>
-        </Body>
+        <Stack space={16} align="left">
+          <PriceFilter price={filters.prices} setPrice={setPricesFilter} />
+          <Divider />
+          <LocationFilter
+            location={filters.location}
+            setLocation={setLocation}
+          />
+          <Divider />
+          <Box width="full">
+            <RangeDistanceFilter
+              distance={filters.range}
+              setDistance={setRangeFilter}
+            />
+          </Box>
+          <Divider />
+          <Button
+            kind="solid"
+            hierarchy="primary"
+            label={t("SearchButton")}
+            onPress={() => window.alert("" + filters.location)}
+          />
+        </Stack>
       </Box>
       <Inset space={16}>
         <Tiles

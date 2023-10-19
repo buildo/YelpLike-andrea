@@ -1,11 +1,12 @@
 import { CheckboxField, Stack, Title } from "@buildo/bento-design-system";
-import React from "react";
 import { useTranslation } from "react-i18next";
 
-function PriceFilter() {
-  const [priceRange, setpriceRange] = React.useState<boolean[]>(
-    new Array(4).fill(false)
-  );
+type PriceFilterProps = {
+  price: boolean[];
+  setPrice: (arg: boolean[]) => void;
+};
+
+function PriceFilter({ price, setPrice }: PriceFilterProps) {
   const { t } = useTranslation();
 
   return (
@@ -14,13 +15,12 @@ function PriceFilter() {
       {[...Array(4).keys()].map((_, position) => {
         return (
           <CheckboxField
+            key={"checkbox-" + position}
             label={"$".repeat(position + 1)}
-            value={priceRange[position]}
+            value={price[position]}
             onChange={() => {
-              setpriceRange(
-                priceRange.map((item, index) =>
-                  index === position ? !item : item
-                )
+              setPrice(
+                price.map((item, index) => (index === position ? !item : item))
               );
             }}
           />
