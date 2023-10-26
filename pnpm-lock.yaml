@@ -8,6 +8,9 @@ dependencies:
   '@buildo/bento-design-system':
     specifier: ^0.20.4
     version: 0.20.4(@types/react@18.2.25)(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
+  '@buildo/formo':
+    specifier: ^2.0.2
+    version: 2.0.2(react@18.2.0)
   '@tanstack/react-query':
     specifier: ^4.36.1
     version: 4.36.1(react-dom@18.2.0)(react@18.2.0)
@@ -371,6 +374,14 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
       - prop-types
+    dev: false
+
+  /@buildo/formo@2.0.2(react@18.2.0):
+    resolution: {integrity: sha512-BcmPPcmC66cJBHmQNlqwkO6qM+5PqxKQYhGbXjdX4GISRwKSn3k+ciZslqZZjLS+s2+vyMcFZq63IpTdxcO1/Q==}
+    peerDependencies:
+      react: ^17.0.1
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /@datepicker-react/hooks@2.8.4(react@18.2.0):

@@ -8,18 +8,43 @@ import {
   AreaLoader,
   Inset,
   Tiles,
+  TextField,
+  SliderField,
 } from "@buildo/bento-design-system";
-import RestaurantPreview from "../components/RestaurantPreview";
-import PriceFilter from "../components/PriceFilter";
-import LocationFilter from "../components/LocationFilter";
-import RangeDistanceFilter from "../components/RangeDistanceFilter";
-import { useTranslation } from "react-i18next";
-import React from "react";
 import useGetRestaurantList from "../hooks";
+import RestaurantPreview from "../components/RestaurantPreview";
+import { useTranslation } from "react-i18next";
+import { validators, useFormo, success } from "@buildo/formo";
+import { useEffect } from "react";
 
 function Home() {
   const { t } = useTranslation();
-  const { isLoading, isError, data } = useGetRestaurantList(10);
+  const initialValues = {
+    prices: [true, true, true, true],
+    location: "Milan",
+    radius: 0,
+  };
+
+  const { fieldProps, handleSubmit, values } = useFormo(
+    {
+      initialValues,
+      fieldValidators: () => ({
+        location: validators.minLength(2, "City name is too short"),
+      }),
+    },
+    {
+      onSubmit: async (values) => {
+        refetch();
+        return success(values);
+      },
+    }
+  );
+
+  useEffect(() => {
+    refetch();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const { isLoading, isError, data, refetch } = useGetRestaurantList(values);
 
   if (isLoading) {
     return <AreaLoader message="Loading..."></AreaLoader>;
@@ -36,30 +61,6 @@ function Home() {
     );
   }
 
-  const [filters, setFilters] = React.useState({
-    prices: [false, false, false, false],
-    location: "",
-    range: 0,
-  });
-
-  const setPricesFilter = (prices: boolean[]) =>
-    setFilters({
-      ...filters,
-      prices,
-    });
-
-  const setRangeFilter = (range: number) =>
-    setFilters({
-      ...filters,
-      range,
-    });
-
-  const setLocationFilter = (location: string) =>
-    setFilters({
-      ...filters,
-      location,
-    });
-
   const cards = data?.businesses.map((element) => {
     return <RestaurantPreview key={"home-" + element.alias} {...element} />;
   });
@@ -71,17 +72,25 @@ function Home() {
     >
       <Box height="full" padding={24}>
         <Stack space={16} align="left">
-          <PriceFilter price={filters.prices} setPrice={setPricesFilter} />
+          {/* price filters */}
+
           <Divider />
-          <LocationFilter
-            location={filters.location}
-            setLocation={setLocationFilter}
+          {/* location filters */}
+          <TextField
+            {...fieldProps("location")}
+            label={t("Location.Label")}
+            placeholder={t("Location.Placeholder")}
           />
           <Divider />
+          {/* range filters */}
           <Box width="full">
-            <RangeDistanceFilter
-              distance={filters.range}
-              setDistance={setRangeFilter}
+            <SliderField
+              type="single"
+              label={t("RangeDistance.Label")}
+              minValue={0}
+              maxValue={10}
+              step={1}
+              {...fieldProps("radius")}
             />
           </Box>
           <Divider />
@@ -89,7 +98,7 @@ function Home() {
             kind="solid"
             hierarchy="primary"
             label={t("SearchButton")}
-            onPress={() => window.alert("" + filters.location)}
+            onPress={handleSubmit}
           />
         </Stack>
       </Box>

@@ -29,6 +29,8 @@ export const previewList = z.object({
 export type PreviewList = z.infer<typeof previewList>;
 
 export const filterParams = z.object({
-  range: z.number(),
+  prices: z.array(z.boolean()),
+  location: z.string(),
+  radius: z.number(),
 });
 export type FiltersParams = z.infer<typeof filterParams>;

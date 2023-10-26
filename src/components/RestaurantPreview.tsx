@@ -22,7 +22,10 @@ function RestaurantPreview(props: PreviewProp) {
   return (
     <Card elevation="small" borderRadius={8} padding={16} paddingTop={24}>
       <Stack space={8} align={"center"}>
-        <img src={imagePrev} width="70%" height="100%" />
+        <img
+          src={imagePrev}
+          style={{ height: "200px", width: "100%", objectFit: "scale-down" }}
+        />
         <Title size="medium">{props.name}</Title>
         <Body size="medium">
           {props.address}
