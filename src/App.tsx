@@ -11,7 +11,7 @@ import React from "react";
 
 function App() {
   const { t } = useTranslation();
-  const [restId, setRestId] = React.useState("test");
+  const [restId, setRestId] = React.useState("0");
 
   return (
     <BentoProvider defaultMessages={defaultMessages}>

@@ -1,6 +1,7 @@
 // import { useTranslation } from "react-i18next";
 // import { Box, Stack, Title, Label, Body } from "@buildo/bento-design-system";
 import { useGetRestaurantDetails } from "../hooks";
+import { Feedback } from "@buildo/bento-design-system";
 interface RestID {
   id: string;
 }
@@ -11,6 +12,17 @@ function RestaurantDetail({ id }: RestID) {
   console.log(data);
   console.log(isLoading);
   console.log(isError);
+
+  if (id == "0" || isError) {
+    return (
+      <Feedback
+        size="medium"
+        title="Error!"
+        description="Something went wrong!"
+        status="negative"
+      />
+    );
+  }
 
   return "gianni";
 

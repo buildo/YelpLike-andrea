@@ -9,7 +9,12 @@ export function useGetRestaurantList(filtersParams: {
   radius: number;
 }) {
   return useQuery(
-    ["restaurantList"],
+    [
+      "restaurantList",
+      filtersParams.prices,
+      filtersParams.location,
+      filtersParams.radius,
+    ],
     async (): Promise<PreviewList> => {
       const prom: JSON = await getRestaurantList(filtersParams);
       return fromJsonToProp(prom);
@@ -20,7 +25,7 @@ export function useGetRestaurantList(filtersParams: {
 
 export function useGetRestaurantDetails(id: string) {
   return useQuery(
-    ["restaurantDetails"],
+    ["restaurantDetails", id],
     async (): Promise<PreviewList> => {
       const prom: JSON = await getRestaurantDetails(id);
       return fromJsonToProp(prom);
