@@ -11,13 +11,17 @@ import {
   TextField,
   SliderField,
 } from "@buildo/bento-design-system";
-import useGetRestaurantList from "../hooks";
+import { useGetRestaurantList } from "../hooks";
 import RestaurantPreview from "../components/RestaurantPreview";
 import { useTranslation } from "react-i18next";
 import { validators, useFormo, success } from "@buildo/formo";
 import { useEffect } from "react";
+import { PreviewPropComponent } from "../models";
+interface Props {
+  setId: (value: string) => void;
+}
 
-function Home() {
+function Home({ setId }: Props) {
   const { t } = useTranslation();
   const initialValues = {
     prices: [true, true, true, true],
@@ -45,6 +49,7 @@ function Home() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const { isLoading, isError, data, refetch } = useGetRestaurantList(values);
+  console.log(data);
 
   if (isLoading) {
     return <AreaLoader message="Loading..."></AreaLoader>;
@@ -62,7 +67,16 @@ function Home() {
   }
 
   const cards = data?.businesses.map((element) => {
-    return <RestaurantPreview key={"home-" + element.alias} {...element} />;
+    const prevPropsComponent: PreviewPropComponent = {
+      vars: { ...element },
+      setId: setId,
+    };
+    return (
+      <RestaurantPreview
+        key={"home-" + element.alias}
+        {...prevPropsComponent}
+      />
+    );
   });
   return (
     <ContentWithSidebar

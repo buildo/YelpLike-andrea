@@ -7,16 +7,16 @@ import {
   Button,
 } from "@buildo/bento-design-system";
 import { useTranslation } from "react-i18next";
-import { PreviewProp } from "../models";
 import { useNavigate } from "react-router-dom";
+import { PreviewPropComponent } from "../models";
 
-function RestaurantPreview(props: PreviewProp) {
+function RestaurantPreview(props: PreviewPropComponent) {
   const { t } = useTranslation();
-  const rating = props.rating;
+  const rating = props.vars.rating;
   const imagePrev =
-    props.imageUrl === ""
+    props.vars.imageUrl === ""
       ? "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Barbieri_-_ViaSophia25668.jpg/1200px-Barbieri_-_ViaSophia25668.jpg"
-      : props.imageUrl;
+      : props.vars.imageUrl;
 
   const navigate = useNavigate();
   return (
@@ -26,16 +26,19 @@ function RestaurantPreview(props: PreviewProp) {
           src={imagePrev}
           style={{ height: "200px", width: "100%", objectFit: "scale-down" }}
         />
-        <Title size="medium">{props.name}</Title>
+        <Title size="medium">{props.vars.name}</Title>
         <Body size="medium">
-          {props.address}
+          {props.vars.address}
 
           <Label size="small" color="default">
             {t("Card.Rating", { rating })}
           </Label>
         </Body>
         <Button
-          onPress={() => navigate("//restaurat-detail")}
+          onPress={() => {
+            props.setId(props.vars.id);
+            return navigate("/restaurat-detail");
+          }}
           kind="transparent"
           label={t("Card.ButtonLabel")}
           hierarchy="primary"

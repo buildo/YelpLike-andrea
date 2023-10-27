@@ -37,3 +37,23 @@ export const getRestaurantList = async ({
     throw apik.error;
   }
 };
+
+export const getRestaurantDetails = async (id: string) => {
+  const uri = `/business_id_or_alias/${id}`;
+  const apik = apiSecret.safeParse(apiKey);
+
+  if (apik.success) {
+    return (
+      await fetch(uri, {
+        method: "get",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + apiKey,
+        },
+      })
+    ).json();
+  } else {
+    throw apik.error;
+  }
+};
