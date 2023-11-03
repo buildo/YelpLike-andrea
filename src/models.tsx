@@ -41,3 +41,20 @@ export const previewPropComponent = z.object({
   setId: z.function().args(z.string()).returns(z.void()),
 });
 export type PreviewPropComponent = z.infer<typeof previewPropComponent>;
+
+export const detailsPropApi = z
+  .object({
+    name: z.string(),
+    rating: z.number(),
+    photos: z.array(z.string()),
+    location: z.object({
+      display_address: z.array(z.string()),
+    }),
+    price: z.string(),
+  })
+  .transform(({ location, ...rest }) => ({
+    address: location.display_address,
+    ...rest,
+  }));
+
+export type DetailsPropApi = z.infer<typeof detailsPropApi>;

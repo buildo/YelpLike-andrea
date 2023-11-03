@@ -39,7 +39,7 @@ export const getRestaurantList = async ({
 };
 
 export const getRestaurantDetails = async (id: string) => {
-  const uri = `/business_id_or_alias/${id}`;
+  const uri = `/api/${id}`;
   const apik = apiSecret.safeParse(apiKey);
 
   if (apik.success) {

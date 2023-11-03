@@ -49,7 +49,6 @@ function Home({ setId }: Props) {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const { isLoading, isError, data, refetch } = useGetRestaurantList(values);
-  console.log(data);
 
   if (isLoading) {
     return <AreaLoader message="Loading..."></AreaLoader>;
