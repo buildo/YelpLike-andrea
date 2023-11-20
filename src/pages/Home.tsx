@@ -17,11 +17,8 @@ import { useTranslation } from "react-i18next";
 import { validators, useFormo, success } from "@buildo/formo";
 import { useEffect } from "react";
 import { PreviewPropComponent } from "../models";
-interface Props {
-  setId: (value: string) => void;
-}
 
-function Home({ setId }: Props) {
+function Home() {
   const { t } = useTranslation();
   const initialValues = {
     prices: [true, true, true, true],
@@ -68,7 +65,6 @@ function Home({ setId }: Props) {
   const cards = data?.businesses.map((element) => {
     const prevPropsComponent: PreviewPropComponent = {
       vars: { ...element },
-      setId: setId,
     };
     return (
       <RestaurantPreview
@@ -85,8 +81,6 @@ function Home({ setId }: Props) {
     >
       <Box height="full" padding={24}>
         <Stack space={16} align="left">
-          {/* price filters */}
-
           <Divider />
           {/* location filters */}
           <TextField

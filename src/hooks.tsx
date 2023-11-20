@@ -10,6 +10,7 @@ export function useGetRestaurantList(filtersParams: {
 }) {
   return useQuery(
     [
+      "restaurantList",
       filtersParams.location.toString,
       filtersParams.radius.toString,
       filtersParams.prices.toString,
@@ -28,7 +29,6 @@ export function useGetRestaurantDetails(id: string) {
     async (): Promise<DetailsPropApi> => {
       const prom: JSON = await getRestaurantDetails(id);
       return fromJsonToPropDetails(prom);
-    },
-    { enabled: false }
+    }
   );
 }

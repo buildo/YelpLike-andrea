@@ -38,7 +38,6 @@ export type FiltersParams = z.infer<typeof filterParams>;
 
 export const previewPropComponent = z.object({
   vars: previewPropApi,
-  setId: z.function().args(z.string()).returns(z.void()),
 });
 export type PreviewPropComponent = z.infer<typeof previewPropComponent>;
 

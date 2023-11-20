@@ -1,25 +1,18 @@
-//import { useTranslation } from "react-i18next";
 import {
   Box,
   Stack,
   Title,
   AreaLoader,
-  Tiles,
+  Columns,
   List,
+  Feedback,
 } from "@buildo/bento-design-system";
 import { useGetRestaurantDetails } from "../hooks";
-import { Feedback } from "@buildo/bento-design-system";
-import { useEffect } from "react";
-interface RestID {
-  id: string;
-}
+import { useParams } from "react-router-dom";
 
-function RestaurantDetail({ id }: RestID) {
-  const { isLoading, isError, data, refetch } = useGetRestaurantDetails(id);
-
-  useEffect(() => {
-    refetch();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+function RestaurantDetail() {
+  const { id } = useParams();
+  const { isLoading, isError, data } = useGetRestaurantDetails(id!);
 
   if (isLoading) {
     return <AreaLoader message="Loading..."></AreaLoader>;
@@ -47,11 +40,10 @@ function RestaurantDetail({ id }: RestID) {
     );
   }
 
-  console.log(data);
-
   const photos = data?.photos.map((photo) => {
     return (
       <img
+        key={photo}
         src={photo}
         alt="restaurant"
         style={{ width: "100%", height: "100%" }}
@@ -63,7 +55,7 @@ function RestaurantDetail({ id }: RestID) {
 
   return (
     <Box height="full" padding={24}>
-      <Tiles space={12} columns={2}>
+      <Columns space={12}>
         <Stack space={16} align="left">
           <Title size="large">{data?.name}</Title>
           <List
@@ -88,7 +80,7 @@ function RestaurantDetail({ id }: RestID) {
         <Stack space={16} align="left">
           {photos}
         </Stack>
-      </Tiles>
+      </Columns>
     </Box>
   );
 }

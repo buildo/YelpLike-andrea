@@ -7,11 +7,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Home from "./pages/Home";
 import RestaurantDetail from "./pages/RestaurantDetail";
-import React from "react";
 
 function App() {
   const { t } = useTranslation();
-  const [restId, setRestId] = React.useState("0");
 
   return (
     <BentoProvider defaultMessages={defaultMessages}>
@@ -22,11 +20,8 @@ function App() {
           </Headline>
         </Inset>
         <Routes>
-          <Route path="/home" element={<Home setId={setRestId} />} />
-          <Route
-            path="/restaurat-detail"
-            element={<RestaurantDetail id={restId} />}
-          />
+          <Route path="/home" element={<Home />} />
+          <Route path="/restaurat-detail/:id" element={<RestaurantDetail />} />
         </Routes>
       </BrowserRouter>
     </BentoProvider>

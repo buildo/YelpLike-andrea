@@ -36,8 +36,7 @@ function RestaurantPreview(props: PreviewPropComponent) {
         </Body>
         <Button
           onPress={() => {
-            props.setId(props.vars.id);
-            return navigate("/restaurat-detail");
+            return navigate(`/restaurat-detail/${props.vars.id}`);
           }}
           kind="transparent"
           label={t("Card.ButtonLabel")}
