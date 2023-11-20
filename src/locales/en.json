@@ -4,10 +4,10 @@
       "Rating": "Rating: {{rating}} ⭐",
       "ButtonLabel":"See details"
     },
-    "priceRangefilter":"Filter by average price : ",
+    "priceRangefilter":"Average price : ",
     "Location":{
       "Placeholder":"Type here your location ... ",
-      "Label": "Location"
+      "Label": "Location :"
     },
     "RangeDistance":{
       "Label":"Distance :"

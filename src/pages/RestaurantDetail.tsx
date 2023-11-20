@@ -29,17 +29,6 @@ function RestaurantDetail() {
     );
   }
 
-  if (id == "0" || isError) {
-    return (
-      <Feedback
-        size="medium"
-        title="Error!"
-        description="Something went wrong!"
-        status="negative"
-      />
-    );
-  }
-
   const photos = data?.photos.map((photo) => {
     return (
       <img

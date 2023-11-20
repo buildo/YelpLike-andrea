@@ -7,19 +7,15 @@ export const getRestaurantList = async ({
   location,
   radius,
 }: {
-  prices: boolean[];
+  prices: string[];
   location: string;
   radius: number;
 }) => {
-  const priceParamsString: string = prices
-    .map((price, index) => {
-      if (price) {
-        return `price=${index + 1}`;
-      }
-    })
-    .filter((price) => price !== "")
-    .join("&");
-  const uri = `/api/search?sort_by=best_match&location=${location}&radius=${radius}000&${priceParamsString}`;
+  const priceParamsString: string = prices.join("&");
+  const radiusParamsString: string =
+    radius == 0 ? "900" : radius.toString() + "000";
+  const uri = `/api/search?sort_by=best_match&location=${location}&radius=${radiusParamsString}&${priceParamsString}`;
+  console.log(uri);
   const apik = apiSecret.safeParse(apiKey);
 
   if (apik.success) {

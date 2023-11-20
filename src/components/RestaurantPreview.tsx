@@ -21,7 +21,7 @@ function RestaurantPreview(props: PreviewPropComponent) {
   const navigate = useNavigate();
   return (
     <Card elevation="small" borderRadius={8} padding={16} paddingTop={24}>
-      <Stack space={8} align={"center"}>
+      <Stack space={8} align="center">
         <img
           src={imagePrev}
           style={{ height: "200px", width: "100%", objectFit: "scale-down" }}

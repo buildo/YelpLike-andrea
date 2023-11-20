@@ -10,6 +10,7 @@ import {
   Tiles,
   TextField,
   SliderField,
+  CheckboxGroupField,
 } from "@buildo/bento-design-system";
 import { useGetRestaurantList } from "../hooks";
 import RestaurantPreview from "../components/RestaurantPreview";
@@ -21,9 +22,9 @@ import { PreviewPropComponent } from "../models";
 function Home() {
   const { t } = useTranslation();
   const initialValues = {
-    prices: [true, true, true, true],
+    prices: ["price=1", "price=2", "price=3", "price=4"],
     location: "Milan",
-    radius: 0,
+    radius: 10,
   };
 
   const { fieldProps, handleSubmit, values } = useFormo(
@@ -81,6 +82,21 @@ function Home() {
     >
       <Box height="full" padding={24}>
         <Stack space={16} align="left">
+          {/* price filters */}
+          <Box width="full">
+            <CheckboxGroupField
+              label={t("priceRangefilter")}
+              orientation="vertical"
+              options={[
+                { value: initialValues.prices[0], label: "€" },
+                { value: initialValues.prices[1], label: "€€" },
+                { value: initialValues.prices[2], label: "€€€" },
+                { value: initialValues.prices[3], label: "€€€€" },
+              ]}
+              {...fieldProps("prices")}
+            />
+          </Box>
+
           <Divider />
           {/* location filters */}
           <TextField

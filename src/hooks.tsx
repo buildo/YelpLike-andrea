@@ -4,7 +4,7 @@ import { fromJsonToPropPreview, fromJsonToPropDetails } from "./utils";
 import { PreviewList, DetailsPropApi } from "./models";
 
 export function useGetRestaurantList(filtersParams: {
-  prices: boolean[];
+  prices: string[];
   location: string;
   radius: number;
 }) {
