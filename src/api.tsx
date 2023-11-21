@@ -15,7 +15,6 @@ export const getRestaurantList = async ({
   const radiusParamsString: string =
     radius == 0 ? "900" : radius.toString() + "000";
   const uri = `/api/search?sort_by=best_match&location=${location}&radius=${radiusParamsString}&${priceParamsString}`;
-  console.log(uri);
   const apik = apiSecret.safeParse(apiKey);
 
   if (apik.success) {
