@@ -16,7 +16,7 @@ import { useGetRestaurantList } from "../hooks";
 import RestaurantPreview from "../components/RestaurantPreview";
 import { useTranslation } from "react-i18next";
 import { validators, useFormo, success } from "@buildo/formo";
-import { useEffect } from "react";
+import { useState } from "react";
 import { PreviewPropComponent } from "../models";
 
 function Home() {
@@ -27,7 +27,9 @@ function Home() {
     radius: 10,
   };
 
-  const { fieldProps, handleSubmit, values } = useFormo(
+  const [activeFilters, setActiveFilters] = useState(initialValues);
+
+  const { fieldProps, handleSubmit } = useFormo(
     {
       initialValues,
       fieldValidators: () => ({
@@ -36,17 +38,13 @@ function Home() {
     },
     {
       onSubmit: async (values) => {
-        refetch();
+        setActiveFilters(values);
         return success(values);
       },
     }
   );
 
-  useEffect(() => {
-    refetch();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const { isLoading, isError, data, refetch } = useGetRestaurantList(values);
+  const { isLoading, isError, data } = useGetRestaurantList(activeFilters);
 
   if (isLoading) {
     return <AreaLoader message="Loading..."></AreaLoader>;

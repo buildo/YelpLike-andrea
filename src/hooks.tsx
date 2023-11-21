@@ -18,8 +18,7 @@ export function useGetRestaurantList(filtersParams: {
     async (): Promise<PreviewList> => {
       const prom: JSON = await getRestaurantList(filtersParams);
       return fromJsonToPropPreview(prom);
-    },
-    { enabled: false }
+    }
   );
 }
 
