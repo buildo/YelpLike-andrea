@@ -11,9 +11,9 @@ export function useGetRestaurantList(filtersParams: {
   return useQuery(
     [
       "restaurantList",
-      filtersParams.location.toString,
-      filtersParams.radius.toString,
-      filtersParams.prices.toString,
+      filtersParams.location,
+      filtersParams.radius,
+      filtersParams.prices,
     ],
     async (): Promise<PreviewList> => {
       const prom: JSON = await getRestaurantList(filtersParams);
