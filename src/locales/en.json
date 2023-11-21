@@ -1,6 +1,17 @@
 {
     "title": "YelpLike",
     "Card": {
-      "Rating": "Rating: {{rating}} ★"
-    }
+      "Rating": "Rating: {{rating}} ⭐",
+      "ButtonLabel":"See details"
+    },
+    "priceRangefilter":"Average price : ",
+    "Location":{
+      "Placeholder":"Type here your location ... ",
+      "Label": "Location :"
+    },
+    "RangeDistance":{
+      "Label":"Distance :"
+    },
+    "SearchButton": "Search"
+
   }

@@ -1,15 +1,34 @@
 import { useQuery } from "@tanstack/react-query";
-import { getRestaurantList } from "./api";
-import { fromJsonToProp } from "./utils";
+import { getRestaurantList, getRestaurantDetails } from "./api";
+import { fromJsonToPropPreview, fromJsonToPropDetails } from "./utils";
+import { PreviewList, DetailsPropApi } from "./models";
 
-function useGetRestaurantList(range: number) {
-  return useQuery({
-    queryKey: ["retrieve-list", range],
-    queryFn: async () => {
-      const prom: JSON = await getRestaurantList(range);
-      return fromJsonToProp(prom);
+export function useGetRestaurantList(filtersParams: {
+  prices: string[];
+  location: string;
+  radius: number;
+}) {
+  return useQuery(
+    [
+      "restaurantList",
+      filtersParams.location.toString,
+      filtersParams.radius.toString,
+      filtersParams.prices.toString,
+    ],
+    async (): Promise<PreviewList> => {
+      const prom: JSON = await getRestaurantList(filtersParams);
+      return fromJsonToPropPreview(prom);
     },
-  });
+    { enabled: false }
+  );
 }
 
-export default useGetRestaurantList;
+export function useGetRestaurantDetails(id: string) {
+  return useQuery(
+    ["restaurantDetails", id],
+    async (): Promise<DetailsPropApi> => {
+      const prom: JSON = await getRestaurantDetails(id);
+      return fromJsonToPropDetails(prom);
+    }
+  );
+}
